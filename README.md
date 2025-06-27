@@ -15,3 +15,6 @@ Open `src/index.html` in any modern web browser. No additional dependencies or b
 - Simple AI controls the black pieces
 
 Castling and en passant are not implemented.
+=======
+
+The game currently supports two players taking turns on the same device. Castling and en passant are not implemented.

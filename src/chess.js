@@ -43,6 +43,7 @@ function createBoard() {
 
 function onSquareClick(e) {
     if (turn === 'b') return; // ignore clicks during AI turn
+
     const row = parseInt(e.currentTarget.dataset.row, 10);
     const col = parseInt(e.currentTarget.dataset.col, 10);
     const piece = board[row][col];
@@ -57,6 +58,7 @@ function onSquareClick(e) {
             switchTurn();
             clearSelection();
             createBoard();
+
             if (turn === 'b') {
                 setTimeout(makeRandomAIMove, 300);
             }
@@ -121,6 +123,7 @@ function switchTurn() {
 function updateStatus() {
     statusElement.textContent = turn === 'w' ? "White's turn" : "Black's turn";
 }
+
 
 function makeRandomAIMove() {
     const allMoves = [];
