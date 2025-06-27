@@ -12,5 +12,9 @@ Open `src/index.html` in any modern web browser. No additional dependencies or b
 - Click a piece to see its possible moves
 - Basic movement rules for all pieces
 - Automatic pawn promotion to queen when reaching the last rank
+- Simple AI controls the black pieces
+
+Castling and en passant are not implemented.
+=======
 
 The game currently supports two players taking turns on the same device. Castling and en passant are not implemented.
