@@ -42,6 +42,7 @@ function createBoard() {
 }
 
 function onSquareClick(e) {
+    if (turn === 'b') return; // ignore clicks during AI turn
     const row = parseInt(e.currentTarget.dataset.row, 10);
     const col = parseInt(e.currentTarget.dataset.col, 10);
     const piece = board[row][col];
@@ -56,6 +57,9 @@ function onSquareClick(e) {
             switchTurn();
             clearSelection();
             createBoard();
+            if (turn === 'b') {
+                setTimeout(makeRandomAIMove, 300);
+            }
             return;
         }
     }
@@ -116,6 +120,26 @@ function switchTurn() {
 
 function updateStatus() {
     statusElement.textContent = turn === 'w' ? "White's turn" : "Black's turn";
+}
+
+function makeRandomAIMove() {
+    const allMoves = [];
+    for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+            const piece = board[r][c];
+            if (piece && piece[0] === 'b') {
+                const moves = getValidMoves(r, c);
+                for (const m of moves) {
+                    allMoves.push({ sr: r, sc: c, dr: m.row, dc: m.col });
+                }
+            }
+        }
+    }
+    if (allMoves.length === 0) return;
+    const move = allMoves[Math.floor(Math.random() * allMoves.length)];
+    movePiece(move.sr, move.sc, move.dr, move.dc);
+    switchTurn();
+    createBoard();
 }
 
 function getValidMoves(r, c) {
